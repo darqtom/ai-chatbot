@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ChatBot</title>
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+        crossorigin="anonymous">
+
+    <link
+        href="{{ url_for('static',filename='styles/style.css') }}"
+        rel="stylesheet">
+
+</head>
+<body>
+    <div class="container">
+        <div class="card-custom">
+            <div class="chat-header">
+                <span class="">ChatBot</span>
+            </div>
+            <div id="chatScroll" class="chat-scroll  overflow-scroll">
+                <div id="chatBox" class="d-flex flex-column"></div>
+            </div>
+
+
+            <div id="userInput" class="input-container form-group">
+                <input id="textInput" class="form-control" name="msg" rows="5" placeholder="Type your message" />
+                <input id="sender" class="btn btn-primary" type="button" value="Send" />
+            </div>
+        </div>
+
+        <form class="form" method="POST" action="/">
+            <input class="btn btn-secondary" type="submit" value="Exit chat">
+        </form>
+    </div>
+    <script>
+        const getBotResponse = () => {
+            const inputEl = document.getElementById('textInput');
+            const chatBoxEl = document.getElementById('chatBox');
+            const chatScroll = document.getElementById('chatScroll')
+            const userMessage = inputEl.value;
+            if (userMessage) {
+                const userMessageHtml = `<div class='user-text'><span>${userMessage}</span></div>`;
+                inputEl.value = '';
+                chatBoxEl.insertAdjacentElement('beforeend', htmlToElement(userMessageHtml));
+
+                inputEl.scrollIntoView({block: 'start', behavior: 'smooth'});
+                chatScroll.scrollTop = chatScroll.scrollHeight;
+                (async () => {
+                    const response = await fetch('/get', {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({userSentence: userMessage})
+                    });
+                    const data = await response.json();
+                    if (data) {
+                        if (data.hasOwnProperty('botMessage')) {
+                            const botMessageHtml = `<div class='bot-text'><span>${data['botMessage']}</span></div>`;
+                            chatBoxEl.insertAdjacentElement('beforeend', htmlToElement(botMessageHtml))
+                            chatScroll.scrollTop = chatScroll.scrollHeight;
+                        } else {
+                            alert(data['error'])
+                        }
+                    }
+
+                })();
+            }
+        }
+
+        const htmlToElement = (html) => {
+            let template = document.createElement('div');
+            html = html.trim();
+            template.innerHTML = html;
+            return template;
+        }
+
+        document.getElementById("sender").addEventListener("click", (e) => {
+            getBotResponse()
+        });
+
+        document.getElementById("textInput").addEventListener("keypress", (e) => {
+            if (e.key === 'Enter') {
+                getBotResponse()
+            }
+        });
+    </script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous">
+    </script>
+
+</body>
+</html>

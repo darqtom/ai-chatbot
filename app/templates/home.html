@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <link
+            href="{{ url_for('static',filename='styles/style.css') }}"
+            rel="stylesheet">
+    <title>ChatBot</title>
+</head>
+<body>
+    <div class="container">
+        <div class="home-header">
+            <h1 class="home-header--primary"> ChatBot </h1>
+            <h2 class="home-header--secondary"> Click button below to start chat!</h2>
+        </div>
+
+        <form method="POST" action="/app">
+            <input class="btn btn-primary btn-big" type="submit" value="Start chat">
+        </form>
+    </div>
+</body>
+</html>

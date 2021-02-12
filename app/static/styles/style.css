@@ -1,0 +1,110 @@
+body {
+    background: #43cea2;
+    background: -webkit-linear-gradient(to right, #185a9d, #43cea2);
+    background: linear-gradient(to right, #185a9d, #43cea2);
+}
+
+.home-header {
+    text-align: center;
+    color: white;
+    margin-bottom: 40px;
+}
+
+.home-header--primary {
+    font-size: 3rem;
+}
+
+.home-header--secondary {
+    font-size: 1.5rem;
+}
+
+.btn-big {
+    width: 200px;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-custom {
+    height: 600px;
+    width: 450px;
+    border-radius: 10px 10px 0 0;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+}
+
+.chat-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    font-size: large;
+}
+
+.chat-scroll {
+    background-color: #eee;
+    height: 100%;
+}
+#chatBox {
+    padding: 10px;
+}
+
+.bot-text {
+    float: left;
+    background-color: #43cea2;
+    color: white;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    max-width: 55%;
+}
+
+.user-text {
+    float: right;
+    background-color: #185a9d;
+    color: white;
+    padding: 10px;
+    margin-right: 10px;
+    max-width: 55%;
+    border-radius: 10px;
+}
+
+.btn-primary {
+    background-color: #185a9d;
+    border-radius: 0;
+    border: none;
+}
+
+.btn-secondary {
+    width: 150px;
+    border: none;
+}
+
+.input-container {
+    display: flex;
+    justify-content: stretch;
+}
+
+.form-control:focus {
+    border: none;
+    box-shadow: 0 0 0 0 white !important;
+}
+
+.form-control {
+    border: none;
+    padding: 10px;
+}
+
+.form {
+    margin-top: 20px;
+}
+
