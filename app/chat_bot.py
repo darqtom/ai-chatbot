@@ -11,8 +11,8 @@ from model_development import ChatNet
 from model_development import NLTKUtils
 
 
-MODEL_PATH = './static/model.pth'
-INTENTS_FILE_PATH = './static/intents.json'
+MODEL_PATH = './app/static/model.pth'
+INTENTS_FILE_PATH = './app/static/intents.json'
 
 
 class ChatBot:
